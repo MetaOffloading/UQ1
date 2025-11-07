@@ -65,23 +65,18 @@ public class SequenceHandler {
 			switch (sequencePosition.get(0)) {
 			/***********************************************************************
 			 * The code here defines the main sequence of events in the experiment *
-			 **********************************************************************/
-			//case 1:
-				//String startdata = TimeStamp.Now() + ",";
-				//startdata = startdata + SessionInfo.participantID;
-				
-				//PHP.logData("start", startdata, true);
-				//break;
+			 **********************************************************************/			
 			case 1:
-				ClickPage.Run(Instructions.Get(0), "Next");
+				IOtask2Block.SetParameters();
 				break;
 			case 2:
-				ClickPage.Run(Instructions.Get(1), "Next");
-				break;				
+				ClickPage.Run("Are you ready to practice?", "Go");
+				break;
 			case 3:
 				IOtask2Block block1 = new IOtask2Block();
 				
-				block1.totalCircles = 10;
+				block1.totalCircles = 8;
+				block1.nCircles = Params.nCircles;
 				block1.nTargets = 0;
 				block1.blockNum = 1;
 				block1.logDragData = true;
@@ -89,124 +84,64 @@ public class SequenceHandler {
 				block1.Run();
 				break;
 			case 4:
-				ClickPage.Run(Instructions.Get(2), "Next");
+				ClickPage.Run("Wait for the instructions, then press below to practice", "Go");
 				break;
 			case 5:
 				IOtask2Block block2 = new IOtask2Block();
 				
-				block2.totalCircles = 10;
-				block2.nTargets = 3;
-				block2.offloadCondition = Names.REMINDERS_NOTALLOWED;
+				block2.totalCircles = 8;
+				block2.nCircles = Params.nCircles;
+				block2.nTargets = 1;
 				block2.blockNum = 2;
 				block2.logDragData = true;
 				
 				block2.Run();
 				break;
 			case 6:
-				ClickPage.Run(Instructions.Get(3), "Next");
+				ClickPage.Run("Wait for the instructions, then press below to practice", "Go");
 				break;
 			case 7:
 				IOtask2Block block3 = new IOtask2Block();
 				
+				block3.totalCircles = Params.totalCircles;
+				block3.nCircles = Params.nCircles;
 				block3.nTargets = Params.nTargets;
-				block3.totalCircles = 15;
-				block3.offloadCondition = Names.REMINDERS_NOTALLOWED;
 				block3.blockNum = 3;
 				block3.logDragData = true;
-				
+				block3.offloadCondition = Names.REMINDERS_NOTALLOWED;
 				block3.Run();
-				break;
+				break;	
 			case 8:
-				Slider.Run(Instructions.Get(4), "0%", "100%");
+				ClickPage.Run("Wait for the instructions, then press below to practice", "Go");
 				break;
 			case 9:
-				PHP.logData("slider1", ""+Slider.getSliderValue(), true);
-				break;
-			case 10:
-				ClickPage.Run(Instructions.Get(5), "Next");
-				break;
-			case 11:
 				IOtask2Block block4 = new IOtask2Block();
 				
+				block4.totalCircles = Params.totalCircles;
+				block4.nCircles = Params.nCircles;
 				block4.nTargets = Params.nTargets;
-				block4.totalCircles = 15;
-				block4.offloadCondition = Names.REMINDERS_MANDATORY_TARGETONLY;
 				block4.blockNum = 4;
 				block4.logDragData = true;
-				
+				block4.offloadCondition = Names.REMINDERS_MANDATORY_TARGETONLY;
 				block4.Run();
-				break;	
-			case 12:
-				ClickPage.Run(Instructions.Get(6), "Next");
 				break;
-			case 13:
-				ClickPage.Run(Instructions.Get(61), "Next");
+			case 10:
+				ClickPage.Run("Wait for the instructions, then press below to start", "Go");
 				break;
-			case 14:
-				ClickPage.Run(Instructions.Get(62), "Next");
-				break;
-			case 15:
+			case 11:
 				IOtask2Block block5 = new IOtask2Block();
 				
+				block5.totalCircles = Params.totalCircles;
+				block5.nCircles = Params.nCircles;
 				block5.nTargets = Params.nTargets;
-				block5.totalCircles = 15;
-				block5.targetValues.add(1);
 				block5.blockNum = 5;
 				block5.logDragData = true;
-				
+				block5.standard16block = true;
 				block5.Run();
-				break;				
-			case 16:
-				ClickPage.Run(Instructions.Get(7), "Next");
 				break;
-			case 17:
-				IOtask2Block block6 = new IOtask2Block();
-				
-				block6.nTargets = Params.nTargets;
-				block6.totalCircles = 15;
-				block6.standard24blockprac = true;
-				block6.blockNum = 6;
-				block6.logDragData = true;
-				
-				block6.Run();
-				break;	
-			case 18:
-				ClickPage.Run(Instructions.Get(8), "Next");
-				break;	
-			case 19:
-				ProgressBar.Initialise();
-				ProgressBar.Show();
-				ProgressBar.SetProgress(0, 16);
-				
-				IOtask2Block block7 = new IOtask2Block();
-				
-				block7.nTargets = Params.nTargets;
-				block7.totalCircles = 15;
-				block7.standard16block = true;
-				block7.updateProgressText = true;
-				block7.updateProgress = true;
-				block7.countdownTimer = true;
-				block7.blockNum = 7;
-				block7.logDragData = true;
-				
-				block7.Run();
-				break;
-			case 20:
-				ProgressBar.Hide();
-				
-				// log data and check that it saves
-				String data = TimeStamp.Now() + ",";
-				data = data + SessionInfo.participantID + ",";
-				data = data + SessionInfo.gender + ",";
-				data = data + SessionInfo.age + ",";
-				data = data + Counterbalance.getCounterbalancingCell();
-
-				PHP.UpdateStatus("finished");
-				PHP.logData("finish", data, true);
-				break;
-			case 21:
-				ClickPage.Run(Instructions.Get(10), "nobutton");
-				break;
+			case 12:
+				ClickPage.Run("Thank you.", "nobutton");
+				break;		
 			}
 			break;
 

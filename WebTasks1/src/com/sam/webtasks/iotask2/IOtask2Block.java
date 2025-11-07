@@ -159,6 +159,11 @@ public class IOtask2Block {
 	
 	//what type of stimuli are inside the circles?
 	public int ongoingStimType = Names.ONGOING_STIM_NUMBERS;
+	
+	// set the parameters
+	static public void SetParameters() {
+		SequenceHandler.Next();
+	}
 
 	// this method actually runs the block
 	public void Run() { 

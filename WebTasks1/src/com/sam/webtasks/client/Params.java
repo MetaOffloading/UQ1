@@ -1,8 +1,6 @@
 package com.sam.webtasks.client;
 
 public class Params {
-	public final static int nCircles = 6;
-	public final static int totalCircles = 40;
 	public final static int lockOutTime = 2500;
 	public final static int nTrials = 8;
 	public final static int pointsPerPound = 300;
@@ -14,5 +12,7 @@ public class Params {
 	public final static String basePayment="$2";
 	public final static int initialPoints=600;
 	
-	public final static int nTargets = 6;
+	public static int nCircles = 5;
+	public static int totalCircles = 19;
+	public static int nTargets = 8;
 }

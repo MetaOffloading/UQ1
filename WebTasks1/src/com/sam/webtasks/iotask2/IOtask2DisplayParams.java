@@ -6,6 +6,9 @@ public class IOtask2DisplayParams {
 	// size of the box, as a proportion of window size
 	public static double boxSize = 0.85;
 
+	// width of box edges
+	public static int boxLineWidth = 30;
+	
 	// size of the margin inside the edges of the box, where no cirles are placed
 	// expressed as proportion of the box size
 	public static double margin = 0.2;

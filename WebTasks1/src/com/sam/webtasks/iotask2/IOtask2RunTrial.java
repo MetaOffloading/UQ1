@@ -194,11 +194,11 @@ public class IOtask2RunTrial {
 		// set up outline
 		Layer bgLayer = new Layer();
 
-		Line left = new Line(0, 0, 0, boxSize).setStrokeColor(IOtask2DisplayParams.circleColours[1]).setStrokeWidth(10);
+		Line left = new Line(0, 0, 0, boxSize).setStrokeColor(IOtask2DisplayParams.circleColours[1]).setStrokeWidth(IOtask2DisplayParams.boxLineWidth);
 		Line right = new Line(boxSize, 0, boxSize, boxSize).setStrokeColor(IOtask2DisplayParams.circleColours[2])
-				.setStrokeWidth(10);
-		Line bottom = new Line(0, boxSize, boxSize, boxSize).setStrokeColor(ColorName.BLACK).setStrokeWidth(10);
-		Line top = new Line(0, 0, boxSize, 0).setStrokeColor(IOtask2DisplayParams.circleColours[3]).setStrokeWidth(10);
+				.setStrokeWidth(IOtask2DisplayParams.boxLineWidth);
+		Line bottom = new Line(0, boxSize, boxSize, boxSize).setStrokeColor(ColorName.BLACK).setStrokeWidth(IOtask2DisplayParams.boxLineWidth);
+		Line top = new Line(0, 0, boxSize, 0).setStrokeColor(IOtask2DisplayParams.circleColours[3]).setStrokeWidth(IOtask2DisplayParams.boxLineWidth);
 
 		bgLayer.add(left);
 		bgLayer.add(right);
