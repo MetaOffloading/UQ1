@@ -804,7 +804,7 @@ public class IOtask2RunTrial {
 						
 						// end of partial trial?
 						if (IOtask2BlockContext.getContext().standard16block==true) {
-							if (IOtask2BlockContext.currentOverwriteChoice()==0 & IOtask2BlockContext.getCompletedCircles()==6) {
+							if (IOtask2BlockContext.currentOverwriteChoice()==0 & IOtask2BlockContext.getCompletedCircles()==IOtask2BlockContext.getnCircles()) {
 								trialEnded=true;
 							}
 						}
