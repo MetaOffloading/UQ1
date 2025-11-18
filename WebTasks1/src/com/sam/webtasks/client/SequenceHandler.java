@@ -27,9 +27,16 @@ package com.sam.webtasks.client;
 
 import java.util.ArrayList;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.sam.webtasks.basictools.CheckIdExists;
 import com.sam.webtasks.basictools.CheckScreenSize;
 import com.sam.webtasks.basictools.ClickPage;
@@ -66,8 +73,61 @@ public class SequenceHandler {
 			/***********************************************************************
 			 * The code here defines the main sequence of events in the experiment *
 			 **********************************************************************/			
-			case 1:
+			case -1:
 				IOtask2Block.SetParameters();
+				break;
+			case 1:
+				final HorizontalPanel onscreen_panel = new HorizontalPanel();
+				final HorizontalPanel totalcircle_panel = new HorizontalPanel();
+				final HorizontalPanel targets_panel = new HorizontalPanel();
+				
+				final HTML onscreen_HTML = new HTML("How many circles on screen: ");
+				final TextBox onscreen_textbox = new TextBox();
+				
+				onscreen_textbox.setText("5");
+				
+				onscreen_panel.add(onscreen_HTML);
+				onscreen_panel.add(onscreen_textbox);
+				
+				final HTML totalcircle_HTML = new HTML("Total number of circles in one trial: ");
+				final TextBox totalcircle_textbox = new TextBox();
+				
+				totalcircle_textbox.setText("19");
+				
+				totalcircle_panel.add(totalcircle_HTML);
+				totalcircle_panel.add(totalcircle_textbox);
+				
+				final HTML targets_HTML = new HTML("How many targets: ");
+				final TextBox targets_textbox = new TextBox();
+				
+				targets_textbox.setText("8");
+				
+				targets_panel.add(targets_HTML);
+				targets_panel.add(targets_textbox);
+				
+				final Button goButton = new Button("go");
+				
+				final VerticalPanel vPanel = new VerticalPanel();
+				
+				vPanel.add(onscreen_panel);
+				vPanel.add(totalcircle_panel);
+				vPanel.add(targets_panel);
+				vPanel.add(goButton);
+				
+				RootPanel.get().add(vPanel);
+				
+				goButton.addClickHandler(new ClickHandler() {
+					public void onClick(ClickEvent event) {
+						Params.nCircles = Integer.valueOf(onscreen_textbox.getText());
+						Params.totalCircles = Integer.valueOf(totalcircle_textbox.getText());
+						Params.nTargets = Integer.valueOf(targets_textbox.getText());
+						
+						RootPanel.get().clear();
+						
+						SequenceHandler.Next();
+					}
+				});
+				
 				break;
 			case 2:
 				ClickPage.Run("Are you ready to practice?", "Go");
@@ -75,7 +135,7 @@ public class SequenceHandler {
 			case 3:
 				IOtask2Block block1 = new IOtask2Block();
 				
-				block1.totalCircles = 8;
+				block1.totalCircles = Params.totalCircles;
 				block1.nCircles = Params.nCircles;
 				block1.nTargets = 0;
 				block1.blockNum = 1;
@@ -89,7 +149,7 @@ public class SequenceHandler {
 			case 5:
 				IOtask2Block block2 = new IOtask2Block();
 				
-				block2.totalCircles = 8;
+				block2.totalCircles = Params.totalCircles;
 				block2.nCircles = Params.nCircles;
 				block2.nTargets = 1;
 				block2.blockNum = 2;
@@ -112,9 +172,16 @@ public class SequenceHandler {
 				block3.Run();
 				break;	
 			case 8:
-				ClickPage.Run("Wait for the instructions, then press below to practice", "Go");
+				Slider.Run("Now that you have had some practice with the task, please tell us how well you think you can remember the "
+						+ "special circles.", "0%", "100%");
 				break;
 			case 9:
+				PHP.logData("slider1", ""+Slider.getSliderValue(), true);
+				break;
+			case 10:
+				ClickPage.Run("Wait for the instructions, then press below to practice", "Go");
+				break;
+			case 11:
 				IOtask2Block block4 = new IOtask2Block();
 				
 				block4.totalCircles = Params.totalCircles;
@@ -125,21 +192,64 @@ public class SequenceHandler {
 				block4.offloadCondition = Names.REMINDERS_MANDATORY_TARGETONLY;
 				block4.Run();
 				break;
-			case 10:
-				ClickPage.Run("Wait for the instructions, then press below to start", "Go");
+			case 12:
+				ClickPage.Run(Instructions.Get(6), "Next");
 				break;
-			case 11:
+			case 13:
+				ClickPage.Run(Instructions.Get(61), "Next");
+				break;
+			case 14:
+				ClickPage.Run(Instructions.Get(62), "Next");
+				break;
+			case 15:
 				IOtask2Block block5 = new IOtask2Block();
 				
-				block5.totalCircles = Params.totalCircles;
-				block5.nCircles = Params.nCircles;
 				block5.nTargets = Params.nTargets;
+				block5.nCircles = Params.nCircles;
+				block5.totalCircles = 15;
+				block5.targetValues.add(1);
 				block5.blockNum = 5;
 				block5.logDragData = true;
-				block5.standard16block = true;
+				
 				block5.Run();
+				break;	
+			case 16:
+				ClickPage.Run(Instructions.Get(7), "Next");
 				break;
-			case 12:
+			case 17:
+				IOtask2Block block6 = new IOtask2Block();
+				
+				block6.nTargets = Params.nTargets;
+				block6.nCircles = Params.nCircles;
+				block6.totalCircles = 15;
+				block6.standard24blockprac = true;
+				block6.blockNum = 6;
+				block6.logDragData = true;
+				
+				block6.Run();
+				break;	
+			case 18:
+				ClickPage.Run(Instructions.Get(8), "Next");
+				break;
+			case 19:
+				ProgressBar.Initialise();
+				ProgressBar.Show();
+				ProgressBar.SetProgress(0, 17);
+				
+				IOtask2Block block7 = new IOtask2Block();
+				
+				block7.totalCircles = Params.totalCircles;
+				block7.nCircles = Params.nCircles;
+				block7.nTargets = Params.nTargets;
+				block7.blockNum = 5;
+				block7.logDragData = true;
+				block7.standard16block = true;
+				block7.updateProgress = true;
+				block7.Run();
+				break;
+			case 20:
+				ProgressBar.Hide();
+				
 				ClickPage.Run("Thank you.", "nobutton");
 				break;		
 			}
