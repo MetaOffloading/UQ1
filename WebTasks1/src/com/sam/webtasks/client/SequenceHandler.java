@@ -193,15 +193,22 @@ public class SequenceHandler {
 				block4.Run();
 				break;
 			case 12:
-				ClickPage.Run(Instructions.Get(6), "Next");
+				Slider.Run("Now that you have practised setting reminders, please tell us how well you think you can remember the "
+						+ "special circles when you use reminders to help you.", "0%", "100%");
 				break;
 			case 13:
-				ClickPage.Run(Instructions.Get(61), "Next");
+				PHP.logData("slider2", ""+Slider.getSliderValue(), true);
 				break;
 			case 14:
-				ClickPage.Run(Instructions.Get(62), "Next");
+				ClickPage.Run(Instructions.Get(6), "Next");
 				break;
 			case 15:
+				ClickPage.Run(Instructions.Get(61), "Next");
+				break;
+			case 16:
+				ClickPage.Run(Instructions.Get(62), "Next");
+				break;
+			case 17:
 				IOtask2Block block5 = new IOtask2Block();
 				
 				block5.nTargets = Params.nTargets;
@@ -213,10 +220,10 @@ public class SequenceHandler {
 				
 				block5.Run();
 				break;	
-			case 16:
+			case 18:
 				ClickPage.Run(Instructions.Get(7), "Next");
 				break;
-			case 17:
+			case 19:
 				IOtask2Block block6 = new IOtask2Block();
 				
 				block6.nTargets = Params.nTargets;
@@ -228,10 +235,10 @@ public class SequenceHandler {
 				
 				block6.Run();
 				break;	
-			case 18:
+			case 20:
 				ClickPage.Run(Instructions.Get(8), "Next");
 				break;
-			case 19:
+			case 21:
 				ProgressBar.Initialise();
 				ProgressBar.Show();
 				ProgressBar.SetProgress(0, 17);
@@ -247,7 +254,7 @@ public class SequenceHandler {
 				block7.updateProgress = true;
 				block7.Run();
 				break;
-			case 20:
+			case 22:
 				ProgressBar.Hide();
 				
 				ClickPage.Run("Thank you.", "nobutton");
