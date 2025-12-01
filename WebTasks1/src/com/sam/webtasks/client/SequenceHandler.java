@@ -221,7 +221,7 @@ public class SequenceHandler {
 				
 				block6.nTargets = Params.nTargets;
 				block6.nCircles = Params.nCircles;
-				block6.totalCircles = 15;
+				block6.totalCircles = Params.totalCircles;
 				block6.standard24blockprac = true;
 				block6.blockNum = 6;
 				block6.logDragData = true;
@@ -243,7 +243,7 @@ public class SequenceHandler {
 				block7.nTargets = Params.nTargets;
 				block7.blockNum = 5;
 				block7.logDragData = true;
-				block7.standard16block = true;
+				block7.UQversion1block = true;
 				block7.updateProgress = true;
 				block7.Run();
 				break;
@@ -382,7 +382,7 @@ public class SequenceHandler {
 				}
 				break;
 			case 4:
-				if (IOtask2BlockContext.getContext().standard24block == true | IOtask2BlockContext.getContext().standard24blockprac == true | IOtask2BlockContext.getContext().standard16block == true) {
+				if (IOtask2BlockContext.getContext().standard24block == true | IOtask2BlockContext.getContext().standard24blockprac == true | IOtask2BlockContext.getContext().standard16block == true | IOtask2BlockContext.getContext().UQversion1block == true) {
 					IOtask2ChoiceOverwrite.Run();
 				}  else {
 					SequenceHandler.Next();

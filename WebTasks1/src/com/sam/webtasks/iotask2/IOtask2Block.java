@@ -17,6 +17,9 @@ public class IOtask2Block {
 	// number of trials to run
 	public int nTrials = 1;
 
+	// run a UQ version 1 block
+	public boolean UQversion1block = false;
+	
 	// run a standard 17-trial block?
 	public boolean standard17block = false;
 	
@@ -172,6 +175,44 @@ public class IOtask2Block {
 			for (int i = 0; i < nTargetsList.size(); i++) {
 				Collections.swap(nTargetsList, i, Random.nextInt(nTargetsList.size()));
 			}
+		}
+		
+		if (UQversion1block) {
+			nTrials=16;
+			
+			targetValues.add(4);
+			targetValues.add(3);
+			targetValues.add(8);
+			targetValues.add(7);
+			targetValues.add(5);
+			targetValues.add(2);
+			targetValues.add(6);
+			targetValues.add(1);
+			targetValues.add(9);
+			targetValues.add(6);
+			targetValues.add(2);
+			targetValues.add(5);
+			targetValues.add(7);
+			targetValues.add(8);
+			targetValues.add(3);
+			targetValues.add(4);
+			
+			overwriteChoice.add(0);
+			overwriteChoice.add(1);
+			overwriteChoice.add(0);
+			overwriteChoice.add(2);
+			overwriteChoice.add(0);
+			overwriteChoice.add(1);
+			overwriteChoice.add(0);
+			overwriteChoice.add(2);
+			overwriteChoice.add(0);
+			overwriteChoice.add(1);
+			overwriteChoice.add(0);
+			overwriteChoice.add(2);
+			overwriteChoice.add(0);
+			overwriteChoice.add(1);
+			overwriteChoice.add(0);
+			overwriteChoice.add(2);	
 		}
 		
 		if (standard9block) {
