@@ -65,11 +65,11 @@ public class IOtask2PreTrial {
 		}
 
 		final Button reminderButton = new Button(
-				"Special circles worth<br><b>" + points + " </b>point" + s + "<br><br>" + "Reminders allowed");
+				"Special circles worth<br><b>" + points + " </b>point" + s + "<br><br>" + "On my own");
 
 		if (points == IOtask2BlockContext.maxPoints()) {
 			reminderButton.setHTML(
-					"Special circles worth<br><b>" + points + " </b>points<br><br>" + "You <b>must</b> set reminders");
+					"Special circles worth<br><b>" + points + " </b>points<br><br>" + "With reminders");
 		}
 
 		final Button noReminderButton = new Button(
@@ -82,6 +82,9 @@ public class IOtask2PreTrial {
 			reminderButton.setStyleName("greenButton");
 			noReminderButton.setStyleName("pinkButton");
 		}
+		
+		reminderButton.setStyleName("reminderButton");
+		noReminderButton.setStyleName("noReminderButton");
 
 		if (Counterbalance.getFactorLevel("buttonPositions") == 0) {
 			if (points > 0) {

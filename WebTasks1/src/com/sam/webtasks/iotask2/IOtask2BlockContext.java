@@ -98,6 +98,10 @@ public class IOtask2BlockContext {
 		return (blockContext.countdownTimer);
 	}
 	
+	public static boolean countdownTimerBar() {
+		return (blockContext.countdownTimerBar);
+	}
+	
 	public static int countdownTime() {
 		return (blockContext.countdownTime);
 	}
@@ -110,6 +114,11 @@ public class IOtask2BlockContext {
 		if (blockContext.countdownTime > 0) {
 			blockContext.countdownTime--;
 		}
+	}
+	
+	//is this an overwrite practice block?
+	public static boolean getOverwritePracBlock() {
+		return (blockContext.overwritePracBlock);
 	}
 	
 	// are we logging drag data?

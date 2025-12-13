@@ -83,6 +83,18 @@ public class IOtask2RunTrial {
 				}
 			}
 		};
+		
+		final Timer trialTimerBar = new Timer() {
+			public void run() {
+				ProgressBar.SetProgress(IOtask2BlockContext.countdownTime(), Params.countdownTime);
+				
+				IOtask2BlockContext.countdown();
+				
+				if (IOtask2BlockContext.countdownTime() < 1) {
+					cancel();
+				}
+			}
+		};
 
 		if (IOtask2BlockContext.getUpdateProgress()) {
 			ProgressBar.Increment();
@@ -149,6 +161,12 @@ public class IOtask2RunTrial {
 			trialTimer.cancel();
 			IOtask2BlockContext.setCountdownTime(Params.countdownTime);
 			trialTimer.scheduleRepeating(1000);
+		}
+		
+		if (IOtask2BlockContext.countdownTimerBar()) {
+			trialTimerBar.cancel();
+			IOtask2BlockContext.setCountdownTime(Params.countdownTime);
+			trialTimerBar.scheduleRepeating(1000);
 		}
 
 		// points display
@@ -811,6 +829,12 @@ public class IOtask2RunTrial {
 			
 						if (trialEnded) {
 							trialTimer.cancel();
+							trialTimerBar.cancel();
+							
+							if (IOtask2BlockContext.countdownTimerBar()) {
+								ProgressBar.SetProgress(Params.countdownTime, Params.countdownTime);
+							}
+							
 							IOtask2BlockContext.setCountdownTime(Params.countdownTime);
 
 							final Date endTime = new Date();

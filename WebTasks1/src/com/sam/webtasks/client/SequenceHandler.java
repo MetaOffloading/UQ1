@@ -77,9 +77,16 @@ public class SequenceHandler {
 				IOtask2Block.SetParameters();
 				break;
 			case 1:
+				final HorizontalPanel pnum_panel = new HorizontalPanel();
 				final HorizontalPanel onscreen_panel = new HorizontalPanel();
 				final HorizontalPanel totalcircle_panel = new HorizontalPanel();
 				final HorizontalPanel targets_panel = new HorizontalPanel();
+				
+				final HTML pnum_HTML = new HTML("Participant code: ");
+				final TextBox pnum_textbox = new TextBox();
+				
+				pnum_panel.add(pnum_HTML);
+				pnum_panel.add(pnum_textbox);
 				
 				final HTML onscreen_HTML = new HTML("How many circles on screen: ");
 				final TextBox onscreen_textbox = new TextBox();
@@ -109,6 +116,7 @@ public class SequenceHandler {
 				
 				final VerticalPanel vPanel = new VerticalPanel();
 				
+				vPanel.add(pnum_panel);
 				vPanel.add(onscreen_panel);
 				vPanel.add(totalcircle_panel);
 				vPanel.add(targets_panel);
@@ -118,19 +126,24 @@ public class SequenceHandler {
 				
 				goButton.addClickHandler(new ClickHandler() {
 					public void onClick(ClickEvent event) {
+						SessionInfo.participantID = pnum_textbox.getText();
 						Params.nCircles = Integer.valueOf(onscreen_textbox.getText());
 						Params.totalCircles = Integer.valueOf(totalcircle_textbox.getText());
 						Params.nTargets = Integer.valueOf(targets_textbox.getText());
 						
-						RootPanel.get().clear();
+						if (SessionInfo.participantID.length()==0) {
+							Window.alert("Enter a participant code");
+						} else {
+							RootPanel.get().clear();
 						
-						SequenceHandler.Next();
+							SequenceHandler.Next();
+						}
 					}
 				});
 				
 				break;
 			case 2:
-				ClickPage.Run("Are you ready to practice?", "Go");
+				ClickPage.Run("Wait for the instructions, then press below to practice dragging circles.", "Go");
 				break;
 			case 3:
 				IOtask2Block block1 = new IOtask2Block();
@@ -144,7 +157,7 @@ public class SequenceHandler {
 				block1.Run();
 				break;
 			case 4:
-				ClickPage.Run("Wait for the instructions, then press below to practice", "Go");
+				ClickPage.Run("Wait for the instructions, then press below to practice dragging a special circle.", "Go");
 				break;
 			case 5:
 				IOtask2Block block2 = new IOtask2Block();
@@ -158,7 +171,7 @@ public class SequenceHandler {
 				block2.Run();
 				break;
 			case 6:
-				ClickPage.Run("Wait for the instructions, then press below to practice", "Go");
+				ClickPage.Run("Wait for the instructions, then press below to practice dragging lots of special circles <b>on your own.</b>", "Go");
 				break;
 			case 7:
 				IOtask2Block block3 = new IOtask2Block();
@@ -167,19 +180,20 @@ public class SequenceHandler {
 				block3.nCircles = Params.nCircles;
 				block3.nTargets = Params.nTargets;
 				block3.blockNum = 3;
+				block3.nTrials = 2;
 				block3.logDragData = true;
 				block3.offloadCondition = Names.REMINDERS_NOTALLOWED;
 				block3.Run();
 				break;	
 			case 8:
 				Slider.Run("Now that you have had some practice with the task, please tell us how well you think you can remember the "
-						+ "special circles.", "0%", "100%");
+						+ "special circles <b>on your own</b>.", "0%", "100%");
 				break;
 			case 9:
 				PHP.logData("slider1", ""+Slider.getSliderValue(), true);
 				break;
 			case 10:
-				ClickPage.Run("Wait for the instructions, then press below to practice", "Go");
+				ClickPage.Run("Wait for the instructions, then press below to practice dragging lots of special circles <b>with reminders.</b>", "Go");
 				break;
 			case 11:
 				IOtask2Block block4 = new IOtask2Block();
@@ -188,73 +202,61 @@ public class SequenceHandler {
 				block4.nCircles = Params.nCircles;
 				block4.nTargets = Params.nTargets;
 				block4.blockNum = 4;
+				block4.nTrials = 2;
 				block4.logDragData = true;
 				block4.offloadCondition = Names.REMINDERS_MANDATORY_TARGETONLY;
 				block4.Run();
 				break;
 			case 12:
-				Slider.Run("Now that you have practised setting reminders, please tell us how well you think you can remember the "
-						+ "special circles when you use reminders to help you.", "0%", "100%");
+				Slider.Run("Now that you have had some practice with the task, please tell us how well you think you can "
+						+ "remember the special circles <b>with reminders.</b>", "0%", "100%");
 				break;
 			case 13:
 				PHP.logData("slider2", ""+Slider.getSliderValue(), true);
 				break;
 			case 14:
-				ClickPage.Run(Instructions.Get(6), "Next");
+				ClickPage.Run("Wait for the instructions, then press below to continue.", "Next");
 				break;
 			case 15:
-				ClickPage.Run(Instructions.Get(61), "Next");
-				break;
-			case 16:
-				ClickPage.Run(Instructions.Get(62), "Next");
-				break;
-			case 17:
 				IOtask2Block block5 = new IOtask2Block();
 				
 				block5.nTargets = Params.nTargets;
 				block5.nCircles = Params.nCircles;
 				block5.totalCircles = 15;
-				block5.targetValues.add(1);
+				block5.overwritePracBlock = true;
 				block5.blockNum = 5;
 				block5.logDragData = true;
 				
 				block5.Run();
 				break;	
-			case 18:
-				ClickPage.Run(Instructions.Get(7), "Next");
+			case 16:
+				ClickPage.Run("Wait for the instructions, then press below to continue.", "Next");
 				break;
-			case 19:
+			case 17:
+				ProgressBar.Initialise();
+				ProgressBar.Show();
+				ProgressBar.SetProgress(Params.countdownTime, Params.countdownTime);
+				
 				IOtask2Block block6 = new IOtask2Block();
 				
-				block6.nTargets = Params.nTargets;
-				block6.nCircles = Params.nCircles;
 				block6.totalCircles = Params.totalCircles;
-				block6.standard24blockprac = true;
+				block6.nCircles = Params.nCircles;
+				block6.nTargets = Params.nTargets;
 				block6.blockNum = 6;
 				block6.logDragData = true;
 				
+				if (Integer.valueOf(SessionInfo.participantID) % 2 == 1) {
+					block6.UQversion1block = true;
+				} else {
+					block6.UQversion2block = true;
+				}
+				
+				
+				block6.countdownTimerBar = true;
+				
 				block6.Run();
-				break;	
-			case 20:
-				ClickPage.Run(Instructions.Get(8), "Next");
 				break;
-			case 21:
-				ProgressBar.Initialise();
-				ProgressBar.Show();
-				ProgressBar.SetProgress(0, 17);
-				
-				IOtask2Block block7 = new IOtask2Block();
-				
-				block7.totalCircles = Params.totalCircles;
-				block7.nCircles = Params.nCircles;
-				block7.nTargets = Params.nTargets;
-				block7.blockNum = 5;
-				block7.logDragData = true;
-				block7.UQversion1block = true;
-				block7.updateProgress = true;
-				block7.Run();
-				break;
-			case 22:
+			case 18:
 				ProgressBar.Hide();
 				
 				ClickPage.Run("Thank you.", "nobutton");
@@ -389,7 +391,7 @@ public class SequenceHandler {
 				}
 				break;
 			case 4:
-				if (IOtask2BlockContext.getContext().standard24block == true | IOtask2BlockContext.getContext().standard24blockprac == true | IOtask2BlockContext.getContext().standard16block == true | IOtask2BlockContext.getContext().UQversion1block == true) {
+				if (IOtask2BlockContext.getContext().standard24block == true | IOtask2BlockContext.getContext().standard24blockprac == true | IOtask2BlockContext.getContext().standard16block == true | IOtask2BlockContext.getContext().overwritePracBlock == true | IOtask2BlockContext.getContext().UQversion1block == true | IOtask2BlockContext.getContext().UQversion2block == true) {
 					IOtask2ChoiceOverwrite.Run();
 				}  else {
 					SequenceHandler.Next();

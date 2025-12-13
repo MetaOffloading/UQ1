@@ -32,6 +32,14 @@ public class IOtask2ChoiceOverwrite {
 		String noremindInstruction = "You <b>must</b> set a reminder for every special circle. You will "
 								   + "not be able to continue otherwise.<br><br>";
 
+		if (IOtask2BlockContext.getOverwritePracBlock()) {
+			if (IOtask2BlockContext.getReminderChoice() == 1) {
+				overwriteState = 1;
+			} else {
+				overwriteState = 2;
+			}
+		}
+		
 		if ((overwriteState == 1)&(IOtask2BlockContext.getReminderChoice() == 1)) {
 			overwriteString = "The computer will decide this time.<br><br>" + remindInstruction;
 			IOtask2BlockContext.setReminderCost(0);

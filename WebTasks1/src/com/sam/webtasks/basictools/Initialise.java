@@ -61,7 +61,8 @@ public class Initialise {
 			}
 			
 			if (SessionInfo.participantID == null) {
-				SessionInfo.participantID = Window.prompt("What is your Prolific ID?",  "");
+				//SessionInfo.participantID = Window.prompt("What is your Prolific ID?",  "");
+				SessionInfo.participantID = "";
 			}
 			
 			if (SessionInfo.sessionKey == null) {
