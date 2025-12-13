@@ -635,6 +635,18 @@ public class IOtask2RunTrial {
 							}
 						}
 						
+						if (IOtask2BlockContext.getContext().UQversion1block==true) {
+							if (IOtask2BlockContext.currentOverwriteChoice()==0) {
+								moreCircles = false;
+							}
+						}
+						
+						if (IOtask2BlockContext.getContext().UQversion2block==true) {
+							if (IOtask2BlockContext.currentOverwriteChoice()==0) {
+								moreCircles = false;
+							}
+						}
+						
 						if (moreCircles) { // more circles to add on screen
 							final int newCircle = IOtask2BlockContext.getCompletedCircles()
 									+ IOtask2BlockContext.getnCircles() - 1;

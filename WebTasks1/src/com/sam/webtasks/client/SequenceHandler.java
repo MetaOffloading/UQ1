@@ -257,6 +257,12 @@ public class SequenceHandler {
 				block6.Run();
 				break;
 			case 18:
+				// log data and check that it saves
+				String data = "" + TimeStamp.Now();
+
+				PHP.logData("finish", data, true);
+				break;
+			case 19:
 				ProgressBar.Hide();
 				
 				ClickPage.Run("Thank you.", "nobutton");
