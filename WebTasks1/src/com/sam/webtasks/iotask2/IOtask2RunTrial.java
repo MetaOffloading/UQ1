@@ -838,6 +838,20 @@ public class IOtask2RunTrial {
 								trialEnded=true;
 							}
 						}
+						
+						if (IOtask2BlockContext.getContext().UQversion1block==true) {
+							if (IOtask2BlockContext.currentOverwriteChoice()==0 & IOtask2BlockContext.getCompletedCircles()==IOtask2BlockContext.getnCircles()) {
+								trialEnded=true;
+							}
+						}
+						
+						if (IOtask2BlockContext.getContext().UQversion2block==true) {
+							if (IOtask2BlockContext.currentOverwriteChoice()==0 & IOtask2BlockContext.getCompletedCircles()==IOtask2BlockContext.getnCircles()) {
+								trialEnded=true;
+							}
+						}
+						
+						
 			
 						if (trialEnded) {
 							trialTimer.cancel();
