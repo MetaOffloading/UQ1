@@ -187,7 +187,7 @@ public class SequenceHandler {
 				break;	
 			case 8:
 				Slider.Run("Now that you have had some practice with the task, please tell us how well you think you can remember the "
-						+ "special circles <b>on your own</b>.", "0%", "100%");
+						+ "special circles <b>on your own</b>.", "<div style=\"text-align:center\">0%<br>None of them</div>", "<div style=\"text-align:center\">100%<br>All of them</div>");
 				break;
 			case 9:
 				PHP.logData("slider1", ""+Slider.getSliderValue(), true);
@@ -209,7 +209,7 @@ public class SequenceHandler {
 				break;
 			case 12:
 				Slider.Run("Now that you have had some practice with the task, please tell us how well you think you can "
-						+ "remember the special circles <b>with reminders.</b>", "0%", "100%");
+						+ "remember the special circles <b>with reminders.</b>", "<div style=\"text-align:center\">0%<br>None of them</div>", "<div style=\"text-align:center\">100%<br>All of them</div>");
 				break;
 			case 13:
 				PHP.logData("slider2", ""+Slider.getSliderValue(), true);
@@ -222,7 +222,7 @@ public class SequenceHandler {
 				
 				block5.nTargets = Params.nTargets;
 				block5.nCircles = Params.nCircles;
-				block5.totalCircles = 15;
+				block5.totalCircles = Params.totalCircles;
 				block5.overwritePracBlock = true;
 				block5.blockNum = 5;
 				block5.logDragData = true;

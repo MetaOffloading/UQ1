@@ -100,6 +100,26 @@ html, body {
 	font-size: large;
 }
 
+.reminderButton {
+	background-color: lightsalmon;
+	border-radius: 5px;
+	padding: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+
+.noReminderButton {
+	background-color: lightblue;
+	border-radius: 5px;
+	padding: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+
 .livePointsDisplay {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: medium;

@@ -130,10 +130,14 @@ public class IOtask2PreTrial {
 		RootPanel.get().add(horizontalPanel);
 
 		// equalise the dimensions of the buttons
-		if ((points > 0) & (points < IOtask2BlockContext.maxPoints())) {
-			reminderButton.setWidth(noReminderButton.getOffsetWidth() + "px");
-			noReminderButton.setHeight(reminderButton.getOffsetHeight() + "px");
-		}
+		//if ((points > 0) & (points < IOtask2BlockContext.maxPoints())) {
+		
+		reminderButton.setWidth((noReminderButton.getOffsetWidth()+50) + "px");
+		noReminderButton.setWidth(reminderButton.getOffsetWidth() + "px");
+		
+		noReminderButton.setHeight(reminderButton.getOffsetHeight() + "px");
+		
+		//}
 
 		reminderButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {

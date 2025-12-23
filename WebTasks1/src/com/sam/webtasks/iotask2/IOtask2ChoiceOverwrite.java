@@ -28,7 +28,7 @@ public class IOtask2ChoiceOverwrite {
 		 
 		int overwriteState = IOtask2BlockContext.currentOverwriteChoice();
 		
-		String remindInstruction = "You must do the task <b>without</b> setting any reminders.<br><br>";
+		String remindInstruction = "You must <b>try to remember every special circle on your own</b>.<br><br>";
 		String noremindInstruction = "You <b>must</b> set a reminder for every special circle. You will "
 								   + "not be able to continue otherwise.<br><br>";
 

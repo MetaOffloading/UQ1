@@ -133,8 +133,8 @@ public class Slider {
 
         final HorizontalPanel sliderPanel = new HorizontalPanel();
 
-        final Label leftValue = new Label(leftLabelText);
-        final Label rightValue = new Label(rightLabelText);
+        final HTML leftValue = new HTML(leftLabelText);
+        final HTML rightValue = new HTML(rightLabelText);
 
         sliderPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 

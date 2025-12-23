@@ -49,8 +49,11 @@ import com.sam.webtasks.iotask1.IOtask1BlockContext;
 import com.sam.webtasks.iotask1.IOtask1DisplayParams;
 
 public class IOtask2RunTrial {
-
+	static Boolean reminderPopupShown = false;
+	
 	public static void Run() {
+		
+		
 		int m = IOtask2BlockContext.countdownTime() / 60;
 		int s = IOtask2BlockContext.countdownTime() % 60;
 		String tLabel;
@@ -483,8 +486,11 @@ public class IOtask2RunTrial {
 									new Timer() {
 										public void run() {
 											if (IOtask2BlockContext.getReminderFlag() > -1) {
-												Window.alert("You need to set a reminder for circle number " +
-										                 circleText[IOtask2BlockContext.getReminderFlag()].getText());
+												if (!reminderPopupShown) {	
+													Window.alert("You need to set a reminder for circle number " +
+															circleText[IOtask2BlockContext.getReminderFlag()].getText());
+													reminderPopupShown = true;
+												}
 											}
 											
 											circles[IOtask2BlockContext.getNextCircle()]
@@ -689,6 +695,8 @@ public class IOtask2RunTrial {
 
 									IAnimationHandle handle = circles[clickedCircle].animate(AnimationTweener.LINEAR,
 											grow, 200);
+									
+									reminderPopupShown = false;
 								}
 							}.schedule(300);
 
