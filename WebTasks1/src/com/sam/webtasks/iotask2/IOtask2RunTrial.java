@@ -876,7 +876,7 @@ public class IOtask2RunTrial {
 							int duration = (int) (endTime.getTime() - trialStart.getTime());
 							
 							String overwr = "";
-							if (IOtask2BlockContext.getContext().standard24block == true | IOtask2BlockContext.getContext().standard16block == true) {
+							if (IOtask2BlockContext.getContext().standard24block == true | IOtask2BlockContext.getContext().standard16block == true | IOtask2BlockContext.getContext().UQversion1block == true | IOtask2BlockContext.getContext().UQversion2block == true) {
 								overwr = "," + IOtask2BlockContext.currentOverwriteChoice() + ",";
 							} else {
 								overwr = ",";
