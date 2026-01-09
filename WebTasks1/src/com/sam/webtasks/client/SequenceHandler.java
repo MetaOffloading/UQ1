@@ -265,7 +265,7 @@ public class SequenceHandler {
 			case 19:
 				ProgressBar.Hide();
 				
-				ClickPage.Run("Thank you.", "nobutton");
+				ClickPage.Run("Thank you! You scored a total of " + IOtask2BlockContext.getTotalPoints() + " points.", "nobutton");
 				break;		
 			}
 			break;
